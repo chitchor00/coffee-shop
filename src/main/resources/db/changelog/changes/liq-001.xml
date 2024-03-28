@@ -1,0 +1,96 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-1">
+		<createTable tableName="t_cart">
+			<column autoIncrement="true" name="id" type="INT" startWith="1">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="t_cartPK"/>
+			</column>
+			<column name="f_user" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-2">
+		<createTable tableName="t_cart_dink">
+			<column autoIncrement="true" name="id" type="INT" startWith="1">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="t_cart_dinkPK"/>
+			</column>
+			<column name="n_count" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="f_drink" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="f_cart" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-3">
+		<createTable tableName="t_cart_dink_topping">
+			<column autoIncrement="true" name="id" type="INT" startWith="1">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="t_cart_dink_toppingPK"/>
+			</column>
+			<column name="f_topping" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="f_drink_item" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-4">
+		<createTable tableName="t_drink">
+			<column autoIncrement="true" name="id" type="INT" startWith="1">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="t_drinkPK"/>
+			</column>
+			<column name="c_name" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="n_price" type="numeric(38, 2)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-5">
+		<createTable tableName="t_topping">
+			<column autoIncrement="true" name="id" type="INT" startWith="1">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="t_toppingPK"/>
+			</column>
+			<column name="c_name" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="n_price" type="numeric(38, 2)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-6">
+		<addUniqueConstraint columnNames="c_name" constraintName="uc_drink" tableName="t_drink"/>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-7">
+		<addForeignKeyConstraint baseColumnNames="f_topping" baseTableName="t_cart_dink_topping"
+		                         constraintName="fk_cart2topping" deferrable="false" initiallyDeferred="false"
+		                         referencedColumnNames="id" referencedTableName="t_topping" validate="true"/>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-8">
+		<addForeignKeyConstraint baseColumnNames="f_cart" baseTableName="t_cart_dink" constraintName="fk_drinkitem2cart"
+		                         deferrable="false" initiallyDeferred="false" referencedColumnNames="id"
+		                         referencedTableName="t_cart" validate="true"/>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-9">
+		<addForeignKeyConstraint baseColumnNames="f_drink" baseTableName="t_cart_dink"
+		                         constraintName="fk_drinkitem2drink" deferrable="false" initiallyDeferred="false"
+		                         referencedColumnNames="id" referencedTableName="t_drink" validate="true"/>
+	</changeSet>
+	<changeSet author="Swaroop Rajpurohit" id="1689782306535-10">
+		<addForeignKeyConstraint baseColumnNames="f_drink_item" baseTableName="t_cart_dink_topping"
+		                         constraintName="fk_toppingitem2drinkitem" deferrable="false" initiallyDeferred="false"
+		                         referencedColumnNames="id" referencedTableName="t_cart_dink" validate="true"/>
+	</changeSet>
+</databaseChangeLog>

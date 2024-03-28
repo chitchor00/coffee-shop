@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet id="init-data-drinks" author="Swaroop Rajpurohit">
+		<insert tableName="t_drink">
+			<column name="c_name">Black Coffee</column>
+			<column name="n_price">4</column>
+		</insert>
+		<insert tableName="t_drink">
+			<column name="c_name">Latte</column>
+			<column name="n_price">5</column>
+		</insert>
+		<insert tableName="t_drink">
+			<column name="c_name">Mocha</column>
+			<column name="n_price">6</column>
+		</insert>
+		<insert tableName="t_drink">
+			<column name="c_name">Tea</column>
+			<column name="n_price">7</column>
+		</insert>
+	</changeSet>
+
+	<changeSet id="init-data-toppings" author="Swaroop Rajpurohit">
+		<insert tableName="t_topping">
+			<column name="c_name">Milk</column>
+			<column name="n_price">2</column>
+		</insert>
+		<insert tableName="t_topping">
+			<column name="c_name">Hazelnut syrup</column>
+			<column name="n_price">3</column>
+		</insert>
+		<insert tableName="t_topping">
+			<column name="c_name">Chocolate sauce</column>
+			<column name="n_price">5</column>
+		</insert>
+		<insert tableName="t_topping">
+			<column name="c_name">Lemon</column>
+			<column name="n_price">2</column>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

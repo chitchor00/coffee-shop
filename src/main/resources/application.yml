@@ -1,0 +1,49 @@
+server:
+  shutdown: graceful
+
+spring:
+  application:
+    name: CoffeeStore
+  profiles:
+    active: dev
+  jpa:
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/liquibase-master.xml
+    # TIP: for oracle, table's name must be capital!
+    database-change-log-table: Z_LIQ_CHANGELOG
+    database-change-log-lock-table: Z_LIQ_CHANGELOG_LOCK
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.HSQLDialect
+  datasource:
+    url: jdbc:hsqldb:mem:test
+    username: sa
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.HSQLDialect
+  datasource:
+    url: jdbc:hsqldb:mem:test
+    username: sa
